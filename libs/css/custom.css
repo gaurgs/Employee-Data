@@ -1,0 +1,19 @@
+td {
+  padding: 8px;
+}
+
+th {
+  padding: 8px;
+}
+
+thead {
+  border-bottom: 1px #eee solid
+}
+
+.tableBorder {
+    border-bottom: 1px #eee solid
+}
+
+input {
+	text-transform: uppercase;
+}

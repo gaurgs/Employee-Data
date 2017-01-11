@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+     <% include partials/head.ejs %>
+  </head>
+  <body ng-controller="employeeController">
+    <div class="container">
+       <% include partials/headline.ejs %>
+        <br/>
+        <br/>
+        <br/>
+        <div class="col-sm-12" ng-if="Error || false">
+          <div class="alert alert-danger fade in" role="alert">
+            <button type="button" class="close" data-hide="alert" aria-label="Close" ng-click="closeAlert()"><span aria-hidden="true">&times;</span></button>
+            <strong>{{Error}}</strong> 
+          </div>
+        </div>
+        <div class="col-sm-12" ng-if="Success || false">
+          <div class="alert alert-success fade in" role="alert">
+            <button type="button" class="close" data-hide="alert" aria-label="Close" ng-click="closeAlert()"><span aria-hidden="true">&times;</span></button>
+            <strong>{{Success}}</strong> 
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <table>
+              <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Date of Birth</th>
+                <th>Department</th>
+                <th>Gender</th>
+                <th>Age</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <form class="ng-pristine ng-valid ng-submitted">
+                    <td><input class="form-control" ng-model="employee.name" required="" placeholder="Name"></td>
+                    <td><input type="email" ng-model="employee.email" required="" class="form-control" placeholder="abc@xyz.com"></td>
+                    <td><input type="text" ng-model="employee.dob" id="datepicker" class="form-control" required="" placeholder="YYYY-MM-DD"></td>
+                    <td><input ng-model="employee.department" required="" class="form-control" placeholder="Department"></td>
+                    <td><input ng-model="employee.gender" required="" class="form-control" placeholder="Gender"></td>
+                    <td><input type="text" ng-model="employee.age" disabled="" class="form-control" placeholder="Age"></td>
+                    <td><button class="btn btn-success btn-md" ng-click="addEmployee()">Add Employee</button></td>
+                    <td><button class="btn btn-success btn-md" ng-click="updateRecord()">Update Employee</button></td>
+                   </form>
+                  </tr>
+
+                  <tr ng-repeat="record in employeeData track by $index" class="tableBorder">
+                      <td><span>{{record.name | uppercase}}</span></td>
+                      <td><span ng-bind="record.email | uppercase"></span></td>
+                      <td><span ng-bind="record.dob | date: 'yyyy-MM-dd' | uppercase"></span></td>
+                      <td><span ng-bind="record.department | uppercase"></span></td>
+                      <td><span ng-bind="record.gender | uppercase"></span></td>
+                      <td><span ng-bind="record.age | uppercase"></span></td>
+                      <td colspan="2">
+                        <button class="btn btn-danger btn-sm" ng-click="deleteRecord($index)">Delete</button>
+                        <button class="btn btn-success btn-sm" ng-click="editRecord(record)">Edit</button>
+                      </td>
+                    </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+       <% include partials/jsInclude.ejs %>
+       <script src="/controller/employeeController.js"></script>
+  </body>
+</html>
