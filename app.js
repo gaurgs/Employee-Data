@@ -13,8 +13,8 @@ app.use(express.static(__dirname+ '/libs'));
 app.use(express.static(__dirname+'/controller'));
 app.set('view engine','ejs');
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get("/", route.index);
 app.get("/controller/employeeController.js", function(req, res){
