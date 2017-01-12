@@ -1,5 +1,5 @@
  var app = angular.module("app",[]);
-app.controller("employeeController", ['$scope', '$http', function($scope, $http){
+app.controller("employeeController", ['$scope', '$http', '$filter', function($scope, $http, $filter){
 
   $scope.employeeData = [];
 
@@ -69,6 +69,12 @@ app.controller("employeeController", ['$scope', '$http', function($scope, $http)
           console.log(error);
       })
    };
+
+   $scope.$watch('employee.dob', function (newValue) {
+     if(newValue) {
+        $scope.employee.dob = $filter('date')(newValue, 'MM/dd/yyyy');
+     }
+   });
 
   
    $scope.editRecord = function(employee) {
